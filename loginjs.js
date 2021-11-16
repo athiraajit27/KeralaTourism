@@ -35,6 +35,7 @@ function ValidateLoginFields(loginmail,loginpwd)
     {
        alert("Please fill all the fields");
        return false; 
+       
     }
     else
     {
@@ -59,7 +60,7 @@ return true;
 else
 {
 alert("You have entered an invalid email address!");
-loginmail.focus();
 return false;
+
 }
 }
