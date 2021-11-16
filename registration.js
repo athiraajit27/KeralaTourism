@@ -1,9 +1,13 @@
 function formValidation()
 {
 
-var useremai = document.registration.useremail;
-var phone = document.registration.userphone;
-var name = document.registration.username;
+var useremai = document.getElementById("semail").value;
+var phone = document.getElementById("phone").value;
+var name = document.getElementById("username").value;
+var pwd1 = document.getElementById("password1").value;
+var pwd2 = document.getElementById("password2").value;
+
+
 
 
 
@@ -11,18 +15,26 @@ var name = document.registration.username;
 //var passid = document.registration.passid;
 
 
-if (ValidateAllFields(useremai,phone,name))
+if (ValidateAllFields(useremai,phone,name,pwd1,pwd2))
         {
+          console.log("done checkinf fields");
+          if (ValidateEmail(useremai))
 
-          if(ValidateEmail(useremai))
           {
+
+            console.log("email correct");
             if(ValidatePhone(phone))
             {
-            }  
+              console.log("corect phone");
+              if(ValidatedBothPasswords(pwd1,pwd2))
+              {
+                console.log("password correct");
+                return true;
+              }
+            }
 
           }
-
-
+              
 
           
         }
@@ -39,13 +51,31 @@ return false;
 } 
 
 
-
-
-
-
-function ValidateAllFields(useremai,phone,name)
+function ValidatedBothPasswords(pwd1,pwd2)
 {
-  if (useremai===""||phone===""||name==="")
+
+  if(pwd1===pwd2)
+  {
+    alert('Account created Succesfully !!');
+    return true;
+    
+  }
+  else
+  {
+    alert("Paswwords doesn't match")
+    return false;
+
+  }
+
+}
+
+
+
+function ValidateAllFields(useremai,phone,name,pwd1,pwd2)
+{
+
+
+  if (useremai===""||phone===""||name===""||pwd1===""||pwd2==="")
   {
     
     alert("Fields Should not be empty");
@@ -54,6 +84,7 @@ function ValidateAllFields(useremai,phone,name)
   }
   else
   {
+    
     return true;
   }
     
@@ -64,23 +95,24 @@ function ValidateAllFields(useremai,phone,name)
 
 
 
+
 function ValidateEmail(useremai)
 {
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
-if(useremai.value.match(mailformat) )
-{
+    if(useremai.match(mailformat) )
+    {
 
+        
+    return true;
+    }
+    else
+    {
+    alert("You have entered an invalid email address!");
     
-return true;
-}
-else
-{
-alert("You have entered an invalid email address!");
-useremai.focus();
-return false;
-}
+    return false;
+    }
 }
 
 
@@ -91,16 +123,16 @@ return false;
 function ValidatePhone(phone)
 {
   var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
-  if((phone.value.match(phoneno)))
+  if((phone.match(phoneno)))
         {
 
-            alert('Form Succesfully Submitted');
+            
       return true;
         }
       else
         {
         alert("Enter form xxx-xxx-xxxx/xxx.xxx.xxxx/xx xx xxx");
-        phone.focus();
+        //phone.focus();
         return false;
         }
 }
