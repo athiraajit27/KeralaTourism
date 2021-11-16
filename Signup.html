@@ -123,9 +123,9 @@
                 <section>
                     <h2 class="tm-row-heading">Welcome ...!</h2>
                     <p class="tm-row-subheading">Please enter your details to sign-up.</p>
-                    <form id="contact-form" name='registration' action="./Districts.html" onSubmit="return formValidation();">
+                    <form id="contact-form" name='registration' action="./index.html" onSubmit="return formValidation();">
                         <div class="form-group mb-4">
-                            <input type="text" name="username" class="form-control" placeholder="Please enter a userame"/>
+                            <input type="text" id="username" class="form-control" placeholder="Please enter a userame"/>
                         </div>
                         <div class="form-group mb-4">
                             <input type="text" id="semail"name="useremail" class="form-control" placeholder="Your email id"/>
@@ -134,8 +134,8 @@
                             <input type="text" id="phone" name="userphone" class="form-control" placeholder="Your phone number"/>
                         </div>
                         
-                        <div class="form-group mb-4" id="passwordInput" >
-                            <input type="password">
+                        <div class="form-group mb-4" id="passwordInput"  >
+                            <input type="password" name="userpwd1" id="password1">
                             <span id="showHide">SHOW</span>
                         </div>
                         <div  class="form-group mb-4" id="passwordStrength">
@@ -212,6 +212,9 @@
              passwordInfo.style.display = "none";
             
            }
+
+           
+           
          }
         
         function poorPasswordStrength(passwordLength, poorPassword, weakPassword, strongPassword){
@@ -222,6 +225,7 @@
                passwordInfo.style.display = "block";
                passwordInfo.style.color = "red";
                passwordInfo.textContent = "Your password is too Poor";
+               return false;
                   
                 }
         }
@@ -232,6 +236,7 @@
              weak.classList.add("active");
              passwordInfo.textContent = "Your password is Weak";
              passwordInfo.style.color = "orange";
+             
            
            }else{
              weak.classList.remove("active");
@@ -248,6 +253,7 @@
              strong.classList.add("active");
              passwordInfo.textContent = "Your password is strong";
              passwordInfo.style.color = "green";
+            
            }else{
              strong.classList.remove("active");
              
